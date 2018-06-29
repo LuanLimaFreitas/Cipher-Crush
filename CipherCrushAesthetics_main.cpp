@@ -25,6 +25,10 @@ public:
 	
 	int score_in_search_all;
 	
+	
+	//DESTRUTOR: ************************************************************************
+	~screen();
+	
 	void print();
 	void deep_search(int cipher, int x, int y, int dir);
 	bool quick_search(int x, int y, int dir);
@@ -114,7 +118,7 @@ void screen :: deep_search (int cipher, int x, int y, int dir)
 	// "9" quer dizer: essa casa ja foi visitada.
 	dir_new=(dir+3)%4;
 	// "dir" eh o sentido da casa anterior para essa, "dir_new" eh o sentido dessa casa pra proxima.
-	// dir_new assume os valores dir-1,dir e dir+1. Em dir_new=dir+2, encerra-se esta ramificação do processo e volta-se um nivel.
+	// dir_new assume os valores dir-1,dir e dir+1. Em dir_new=dir+2, encerra-se esta ramificaÃ§Ã£o do processo e volta-se um nivel.
 		
 	while(dir_new!=(dir+2)%4)
 	{
@@ -193,7 +197,7 @@ bool screen :: quick_search (int x, int y, int dir)
 	return 0;
 };
 
-// Analisa o tabuleiro inteiro e da a pontuação da rodada.
+// Analisa o tabuleiro inteiro e da a pontuaÃ§Ã£o da rodada.
 int screen :: search_all ()
 {
 	
@@ -305,6 +309,13 @@ void copy_screen (screen s_from, screen s_to)
 			s_to.casa[x][y]=s_from.casa[x][y];
 }
 
+// DESTRUTOR: ********************************************************************************************
+screen :: ~screen()
+{
+	delete casa;
+	delete score_in_search_all;
+};
+
 int main (void)
 {
 	
@@ -322,7 +333,7 @@ int main (void)
 	
 	srand(time(NULL));
 
-	// Gera os valores das casas, garantindo que começa num estado jogavel e nao pontuante.	
+	// Gera os valores das casas, garantindo que comeÃ§a num estado jogavel e nao pontuante.	
 	do
 	{
 		for(x=0;x<size;x++)
